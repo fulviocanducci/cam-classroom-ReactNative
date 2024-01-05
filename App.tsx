@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Camera, CameraType } from "expo-camera";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as MediaLibrary from "expo-media-library";
+import { FontAwesome5, Feather } from "@expo/vector-icons";
 
 export default function App() {
   const [type, setType] = useState(CameraType.back);
@@ -39,10 +40,15 @@ export default function App() {
       <Camera style={styles.camera} type={type} ref={camRef}>
         <View style={styles.mainView}>
           <TouchableOpacity onPress={toggleCameraType} style={styles.flipAreaLeft}>
-            <Text style={styles.flipText}>Flip Camera</Text>
+            <Text style={styles.flipText}>
+              {CameraType.back === type && <FontAwesome5 name="bullseye" size={50} color={"#FFFFFF"} />}
+              {CameraType.front === type && <FontAwesome5 name="dot-circle" size={50} color={"#FFFFFF"} />}
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={camGetPhoto} style={styles.flipAreaRigth}>
-            <Text style={styles.flipText}>Tirar Foto</Text>
+            <Text style={styles.flipText}>
+              <Feather name="camera" size={50} color={"#FFFFFF"} />
+            </Text>
           </TouchableOpacity>
         </View>
       </Camera>
